@@ -2,13 +2,13 @@ package day32;
 
 import java.time.Duration;
 import java.util.Arrays;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class BlazeDemoTC {
+public class BlazeDemoTC3 {
+
 	public static void main(String[] args) throws InterruptedException {
 
 		WebDriver driver = new ChromeDriver();
@@ -32,20 +32,29 @@ public class BlazeDemoTC {
 		int rows =  driver.findElements(By.tagName("tr")).size();
 //		System.out.println("Total no of rows "+(rows));
 		
-		String arr[]= new String [rows-1]; 
+		Double arr[]= new Double [rows-1]; 
 		for (int r = 0; r < (rows-1); r++) {
 		 	String str = driver.findElement(By.xpath("//table[@class='table']//tr["+(r+1)+"]//td[6]")).getText();
+		 	String part2 = str.substring(1); // to remove $ from price
+//		 	System.out.println(part2);
 		 	
-		 	arr[r] = str;
+		 	arr[r] = Double.parseDouble(part2);
 		}
 		
+		
+//		for (Double p : arr) {
+//			System.out.println(p);
+//		}
 		Arrays.sort(arr);
-		for (String s : arr) {
-			System.out.println(s);
-		}
+		// After Sorting
+//		for (Double p : arr) {
+//		System.out.println(p);
+//	}
+
 		
-		String lowestPrice = arr[0];
-	
+		String lowestPrice = "$"+String.valueOf(arr[0]);
+//		System.out.println(lowestPrice +"dff");
+		
 		for (int r = 0; r < (rows-1); r++) {
 		 	String str = driver.findElement(By.xpath("//table[@class='table']//tr["+(r+1)+"]//td[6]")).getText();
 		 	
@@ -86,4 +95,5 @@ public class BlazeDemoTC {
 		driver.close();
 		
 	}
+
 }
