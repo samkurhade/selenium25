@@ -41,12 +41,8 @@ public class DatePickerTC2 {
 			}
 			
 		}
-		
-		
-		
-		
-		
-		
+	    System.out.println("Completd");
+	    driver.close();
 
 	}
 
